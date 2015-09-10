@@ -1,4 +1,4 @@
 OOPDraw
 =======
 
-This program should be refactored into a decent, maintanable codebase.
+This program should be refactored into a decent, maintainable codebase.
