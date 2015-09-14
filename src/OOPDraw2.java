@@ -80,12 +80,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	
 	private ShapeComposer currentComposer;
 
-	private Line s;
-
-	private Oval o;
-
-	private Rectangle r;
-
 	private Point startpos, endpos; // Declare the start and end positions
 
 	private Button btnLine, btnOval, btnRect, btnClear;
@@ -94,8 +88,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	private ArrayList<AbstractShape> vt = new ArrayList<AbstractShape>();
 
 	private int i = 0; // Vector index to keep count of elements(i.e.shapes)
-
-	private int nheight1, nwidth1;
 
 	public static void main(String[] args) {
 		OOPDraw2 frame = new OOPDraw2();
