@@ -10,9 +10,19 @@ public class RectComposer implements ShapeComposer {
 	}
 
 	@Override
-	public void expand(Point p) {
-		// TODO Auto-generated method stub
-
+	public void expand(AbstractShape shape, Point p) {
+		int x = (int) p.getX();
+		int y = (int) p.getY();
+		Point startPos = shape.getStart();
+		Point drawto = new Point(Math.max(x, startPos.x), Math.max(y, startPos.y));
+		Point newstart = new Point(Math.min(x, startPos.x), Math.min(y, startPos.y));
+		
+		int newWidth = Math.abs((drawto.x - newstart.x));
+		int newHeight = Math.abs((drawto.y - newstart.y));
+		Rectangle rect = (Rectangle) shape;
+		rect.setWidth(newWidth);
+		rect.setHeight(newHeight);
+		rect.setStart(newstart);
 	}
 
 	@Override
@@ -24,8 +34,7 @@ public class RectComposer implements ShapeComposer {
 		Point drawto = new Point(Math.max(x, startPos.x), Math.max(y, startPos.y));
 		Point newstart = new Point(Math.min(x, startPos.x), Math.min(y, startPos.y));
 		int newWidth = Math.abs((drawto.x - newstart.x));
-		int newHeight = Math.abs((drawto.y - newstart.y));
-
+		int newHeight = Math.abs((drawto.y - newstart.y)); 
 		Rectangle rectangle = (Rectangle) shape;
 		rectangle.setWidth(newWidth);
 		rectangle.setHeight(newHeight);

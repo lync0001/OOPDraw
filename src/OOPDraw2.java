@@ -167,41 +167,9 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// which means that the user may stop his mouse over a
 		// point but not release it. So that point is the
 		// current endpoint
-		int x = arg0.getX();
-		int y = arg0.getY();
-		endpos = new Point(x, y);
-		if (currentComposer instanceof LineComposer) {
-			s = (Line) vt.get(i); // refer to that shape stored in vector
-			s.setEnd(endpos); // and set its end point.
-		}
-		else if (currentComposer instanceof OvalComposer) {
-			// Here we see where the shape drawing started (mouse went down) and
-			// now where the mouse is (mouse drag). And we draw from this new
-			// point to the point from which the mouse went down. This avoids
-			// the Oval/Rectangle from going out of the screen, or some really
-			// weird things from happening.
-			// Try to take simple Line drawing type of approach and draw from
-			// bottom
-			// right to top left and see what happens :)
-			Point drawto = new Point(Math.max(x, startpos.x), Math.max(y, startpos.y));
-			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
-			nwidth1 = Math.abs((drawto.x - newstart.x));
-			nheight1 = Math.abs((drawto.y - newstart.y));
-			o = (Oval) vt.get(i);
-			o.setWidth(nwidth1);
-			o.setHeight(nheight1);
-			o.setStart(newstart);
-		}
-		else if (currentComposer instanceof RectComposer) {
-			Point drawto = new Point(Math.max(x, startpos.x), Math.max(y, startpos.y));
-			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
-			nwidth1 = Math.abs((drawto.x - newstart.x));
-			nheight1 = Math.abs((drawto.y - newstart.y));
-			r = (Rectangle) vt.get(i);
-			r.setWidth(nwidth1);
-			r.setHeight(nheight1);
-			r.setStart(newstart);
-		}
+		endpos = new Point(arg0.getX(), arg0.getY());
+		AbstractShape currentShape = vt.get(i);
+		currentComposer.expand(currentShape, endpos);
 		repaint();
 	}
 

@@ -10,9 +10,8 @@ public class LineComposer implements ShapeComposer {
 	}
 
 	@Override
-	public void expand(Point p) {
-		// TODO Auto-generated method stub
-
+	public void expand(AbstractShape shape, Point p) {
+		shape.setEnd(p); // and set its end point.
 	}
 
 	@Override
