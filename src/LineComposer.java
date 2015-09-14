@@ -4,7 +4,7 @@ public class LineComposer implements ShapeComposer {
 
 	@Override
 	public AbstractShape create(Point startPos) {
-		MyLine line = new MyLine(); // Create the shape - Line
+		Line line = new Line(); // Create the shape - Line
 		line.setStart(startPos);// Set the start position where mouse went down
 		return line;
 	}

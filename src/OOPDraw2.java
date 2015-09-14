@@ -80,11 +80,11 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	
 	private ShapeComposer currentComposer;
 
-	private MyLine s;
+	private Line s;
 
-	private MyOval o;
+	private Oval o;
 
-	private MyRect r;
+	private Rectangle r;
 
 	private Point startpos, endpos; // Declare the start and end positions
 
@@ -149,7 +149,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int y = arg0.getY();
 		endpos = new Point(x, y);
 		if (currentComposer instanceof LineComposer) {
-			s = (MyLine) vt.get(i);
+			s = (Line) vt.get(i);
 			s.setEnd(endpos);
 			i++;
 			// increment the index of Vector as
@@ -166,7 +166,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
 			nheight1 = Math.abs((drawto.y - newstart.y));
-			o = (MyOval) vt.get(i);
+			o = (Oval) vt.get(i);
 			o.setWidth(nwidth1);
 			o.setHeight(nheight1);
 			o.setStart(newstart);
@@ -179,7 +179,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
 			nheight1 = Math.abs((drawto.y - newstart.y));
-			r = (MyRect) vt.get(i);
+			r = (Rectangle) vt.get(i);
 			r.setWidth(nwidth1);
 			r.setHeight(nheight1);
 			r.setStart(newstart);
@@ -207,7 +207,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int y = arg0.getY();
 		endpos = new Point(x, y);
 		if (currentComposer instanceof LineComposer) {
-			s = (MyLine) vt.get(i); // refer to that shape stored in vector
+			s = (Line) vt.get(i); // refer to that shape stored in vector
 			s.setEnd(endpos); // and set its end point.
 		}
 		else if (currentComposer instanceof OvalComposer) {
@@ -223,7 +223,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
 			nheight1 = Math.abs((drawto.y - newstart.y));
-			o = (MyOval) vt.get(i);
+			o = (Oval) vt.get(i);
 			o.setWidth(nwidth1);
 			o.setHeight(nheight1);
 			o.setStart(newstart);
@@ -233,7 +233,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
 			nheight1 = Math.abs((drawto.y - newstart.y));
-			r = (MyRect) vt.get(i);
+			r = (Rectangle) vt.get(i);
 			r.setWidth(nwidth1);
 			r.setHeight(nheight1);
 			r.setStart(newstart);

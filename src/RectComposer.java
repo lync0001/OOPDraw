@@ -4,7 +4,7 @@ public class RectComposer implements ShapeComposer {
 
 	@Override
 	public AbstractShape create(Point startPos) {
-		MyRect rectangle = new MyRect(); // Create the shape - Rectangle
+		Rectangle rectangle = new Rectangle(); // Create the shape - Rectangle
 		rectangle.setStart(startPos);// Set the start position where mouse went down
 		return rectangle;
 	}
