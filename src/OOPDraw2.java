@@ -77,6 +77,8 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	private static final long serialVersionUID = 4695753453561082104L;
 	
 	private static OOPDraw2 instance;
+	
+	private ShapeComposer currentComposer;
 
 	private MyLine s;
 
@@ -95,20 +97,15 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 	private int nheight1, nwidth1;
 
-	private boolean bline = false; // booleans to know which button was pressed
-
-	private boolean boval = false; // hit/which shapes is to be drawn
-
-	boolean brect = false;
-
 	public static void main(String[] args) {
 		OOPDraw2 frame = new OOPDraw2();
 		frame.setVisible(true);
 	}
 
 	private OOPDraw2() {
+		currentComposer = new LineComposer();
 		// Do nothing in constructor off applet
-		initGUI();
+		initGUI();		
 	}
 	
 	public static OOPDraw2 getInstance() {
@@ -140,22 +137,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		startpos = new Point(x, y);
-		if (bline) {
-			s = new MyLine(); // Create the shape - Line
-			s.setStart(startpos);// Set the start position where mouse went down
-			vt.add(s); // and add the shape (line) to the vector vt
-		}
-		if (boval) {
-			o = new MyOval(); // Create the shape - Oval
-			o.setStart(startpos);// Set the start position where mouse went down
-			vt.add(o); // and add the shape (oval) to the vector vt
-
-		}
-		if (brect) {
-			r = new MyRect(); // Create the shape - Rectangle
-			r.setStart(startpos);// Set the start position where mouse went down
-			vt.add(r); // and add the shape (Rectangle) to the vector vt
-		}
+		vt.add(currentComposer.create(startpos));
 	}
 
 	@Override
@@ -166,14 +148,14 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		endpos = new Point(x, y);
-		if (bline) {
+		if (currentComposer instanceof LineComposer) {
 			s = (MyLine) vt.get(i);
 			s.setEnd(endpos);
 			i++;
 			// increment the index of Vector as
 			// cLine object is now added at current index i
 		}
-		if (boval) {
+		else if (currentComposer instanceof OvalComposer) {
 			// All this jugglery because we do not want to draw oval
 			// outside the applet area. Also we should be able to draw
 			// the oval even if our starting point is at bottom right
@@ -192,7 +174,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			// increment the index of Vector as
 			// cOval object is now added at current index i
 		}
-		if (brect) {
+		else if (currentComposer instanceof RectComposer) {
 			Point drawto = new Point(Math.max(x, startpos.x), Math.max(y, startpos.y));
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
@@ -224,11 +206,11 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		endpos = new Point(x, y);
-		if (bline) {
+		if (currentComposer instanceof LineComposer) {
 			s = (MyLine) vt.get(i); // refer to that shape stored in vector
 			s.setEnd(endpos); // and set its end point.
 		}
-		if (boval) {
+		else if (currentComposer instanceof OvalComposer) {
 			// Here we see where the shape drawing started (mouse went down) and
 			// now where the mouse is (mouse drag). And we draw from this new
 			// point to the point from which the mouse went down. This avoids
@@ -246,7 +228,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			o.setHeight(nheight1);
 			o.setStart(newstart);
 		}
-		if (brect) {
+		else if (currentComposer instanceof RectComposer) {
 			Point drawto = new Point(Math.max(x, startpos.x), Math.max(y, startpos.y));
 			Point newstart = new Point(Math.min(x, startpos.x), Math.min(y, startpos.y));
 			nwidth1 = Math.abs((drawto.x - newstart.x));
@@ -298,9 +280,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				bline = true;
-				boval = false;
-				brect = false;
+				currentComposer = new LineComposer();
 			}
 		});
 		btnOval = new Button("Oval");
@@ -308,9 +288,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				bline = false;
-				boval = true;
-				brect = false;
+				currentComposer = new OvalComposer();
 			}
 		});
 		btnRect = new Button("Rectangle");
@@ -318,9 +296,8 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				bline = false;
-				boval = false;
-				brect = true;
+				currentComposer = new RectComposer();
+
 			}
 		});
 		btnClear = new Button("Clear");
