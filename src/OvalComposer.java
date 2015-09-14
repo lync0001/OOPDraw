@@ -16,9 +16,19 @@ public class OvalComposer implements ShapeComposer {
 	}
 
 	@Override
-	public void complete(Point p) {
-		// TODO Auto-generated method stub
+	public void complete(AbstractShape shape, Point p) {
+		int x = (int) p.getX();
+		int y = (int) p.getY();
+		Oval currentShape = (Oval) shape;
+		Point currentStart = currentShape.getStart();
+		Point drawto = new Point(Math.max(x, currentStart.x), Math.max(y, currentStart.y));
+		Point newStart = new Point(Math.min(x, currentStart.x), Math.min(y, currentStart.y));
+		int newWidth = Math.abs((drawto.x - newStart.x));
+		int newHeight = Math.abs((drawto.y - newStart.y));
 
+		currentShape.setWidth(newWidth);
+		currentShape.setHeight(newHeight);
+		currentShape.setStart(newStart);
 	}
 
 }

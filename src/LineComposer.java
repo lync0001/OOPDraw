@@ -16,9 +16,8 @@ public class LineComposer implements ShapeComposer {
 	}
 
 	@Override
-	public void complete(Point p) {
-		// TODO Auto-generated method stub
-
+	public void complete(AbstractShape shape, Point endPos) {
+		shape.setEnd(endPos);
 	}
 
 }
