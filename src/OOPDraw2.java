@@ -91,7 +91,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	private Button btnLine, btnOval, btnRect, btnClear;
 
 	//ArrayList for storing the shapes
-	private ArrayList<Object> vt = new ArrayList<Object>();
+	private ArrayList<AbstractShape> vt = new ArrayList<AbstractShape>();
 
 	private int i = 0; // Vector index to keep count of elements(i.e.shapes)
 
