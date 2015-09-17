@@ -86,7 +86,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	private Button btnLine, btnOval, btnRect, btnClear;
 
 	//ArrayList for storing the shapes
-	private ArrayList<AbstractShape> vt = new ArrayList<AbstractShape>();
+	private ArrayList<AbstractShape> shapeList = new ArrayList<AbstractShape>();
 
 	private int i = 0; // Vector index to keep count of elements(i.e.shapes)
 
@@ -130,7 +130,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		startpos = new Point(x, y);
-		vt.add(currentComposer.create(startpos));
+		shapeList.add(currentComposer.create(startpos));
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		endpos = new Point(x, y);
-		AbstractShape currentShape = vt.get(i);
+		AbstractShape currentShape = shapeList.get(i);
 		currentComposer.complete(currentShape, endpos);
 		i++;
 		repaint();
@@ -161,7 +161,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// point but not release it. So that point is the
 		// current endpoint
 		endpos = new Point(arg0.getX(), arg0.getY());
-		AbstractShape currentShape = vt.get(i);
+		AbstractShape currentShape = shapeList.get(i);
 		currentComposer.expand(currentShape, endpos);
 		repaint();
 	}
@@ -184,9 +184,9 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		g.setColor(new Color(255, 255, 154));
 		g.fillRect(1, 1, getSize().width - 3, getSize().height - 3);
 		
-		for (int i = 0; i < vt.size(); i++) {
+		for (int i = 0; i < shapeList.size(); i++) {
 			// Add the shapes to the vector
-			AbstractShape sh = (AbstractShape) vt.get(i);
+			AbstractShape sh = (AbstractShape) shapeList.get(i);
 			Graphics2D graphic = (Graphics2D) g;
 			graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 			sh.Draw((Graphics2D) graphic);
@@ -235,7 +235,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 			public void actionPerformed(ActionEvent arg0) {
 				// Clear the entire drawing screen
 				// First remove all elements
-				vt.clear();
+				shapeList.clear();
 				// then make vector index zero
 				i = 0;
 				// finally, call repaint()
