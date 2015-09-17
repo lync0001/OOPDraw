@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -181,19 +182,22 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	 */
 	@Override
 	public void paint(Graphics g) {
+		BufferedImage buffer = new BufferedImage(getSize().width, getSize().height, BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphic = buffer.createGraphics();
+		graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// To get a shadow effect
-		g.setColor(Color.black);
-		g.fillRect(0, 0, getSize().width, getSize().height);
-		g.setColor(new Color(255, 255, 154));
-		g.fillRect(1, 1, getSize().width - 3, getSize().height - 3);
+		graphic.setColor(Color.black);
+		graphic.fillRect(0, 0, getSize().width, getSize().height);
+		graphic.setColor(new Color(255, 255, 154));
+		graphic.fillRect(1, 1, getSize().width - 3, getSize().height - 3);
 		
 		for (int i = 0; i < shapeList.size(); i++) {
 			// Add the shapes to the vector
 			AbstractShape sh = (AbstractShape) shapeList.get(i);
-			Graphics2D graphic = (Graphics2D) g;
-			graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 			sh.Draw((Graphics2D) graphic);
 		}
+		Graphics2D currentGraphic = (Graphics2D) g;
+		currentGraphic.drawImage(buffer, null, 0, 0);
 	}
 
 	/*
