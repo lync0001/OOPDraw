@@ -86,7 +86,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	private Button btnLine, btnOval, btnRect, btnClear;
 
 	//ArrayList for storing the shapes
-	private ArrayList<AbstractShape> shapeList = new ArrayList<AbstractShape>();
+	private ArrayList<AbstractShape> shapeList;
 
 	public static void main(String[] args) {
 		OOPDraw2 frame = new OOPDraw2();
@@ -95,6 +95,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 	private OOPDraw2() {
 		currentComposer = new LineComposer();
+		shapeList = new ArrayList<AbstractShape>();
 		// Do nothing in constructor off applet
 		initGUI();		
 	}
