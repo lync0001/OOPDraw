@@ -18,7 +18,7 @@ public class LineComposer implements ShapeComposer {
 
 	@Override
 	public void complete(Point endPos) {
-		shape.setEnd(endPos);
+		expand(endPos);
 	}
 
 }
