@@ -29,6 +29,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -182,10 +183,13 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		g.fillRect(0, 0, getSize().width, getSize().height);
 		g.setColor(new Color(255, 255, 154));
 		g.fillRect(1, 1, getSize().width - 3, getSize().height - 3);
+		
 		for (int i = 0; i < vt.size(); i++) {
 			// Add the shapes to the vector
 			AbstractShape sh = (AbstractShape) vt.get(i);
-			sh.Draw((Graphics2D) g);
+			Graphics2D graphic = (Graphics2D) g;
+			graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+			sh.Draw((Graphics2D) graphic);
 		}
 	}
 
