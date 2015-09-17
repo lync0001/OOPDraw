@@ -2,20 +2,22 @@ import java.awt.Point;
 
 public class LineComposer implements ShapeComposer {
 
+	private Line shape;
+	
 	@Override
 	public AbstractShape create(Point startPos) {
-		Line line = new Line(); // Create the shape - Line
-		line.setStart(startPos);// Set the start position where mouse went down
-		return line;
+		shape = new Line(); // Create the shape - Line
+		shape.setStart(startPos);// Set the start position where mouse went down
+		return shape;
 	}
 
 	@Override
-	public void expand(AbstractShape shape, Point p) {
+	public void expand(Point p) {
 		shape.setEnd(p); // and set its end point.
 	}
 
 	@Override
-	public void complete(AbstractShape shape, Point endPos) {
+	public void complete(Point endPos) {
 		shape.setEnd(endPos);
 	}
 

@@ -88,8 +88,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	//ArrayList for storing the shapes
 	private ArrayList<AbstractShape> shapeList = new ArrayList<AbstractShape>();
 
-	private int i = 0; // Vector index to keep count of elements(i.e.shapes)
-
 	public static void main(String[] args) {
 		OOPDraw2 frame = new OOPDraw2();
 		frame.setVisible(true);
@@ -141,9 +139,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		int x = arg0.getX();
 		int y = arg0.getY();
 		endpos = new Point(x, y);
-		AbstractShape currentShape = shapeList.get(i);
-		currentComposer.complete(currentShape, endpos);
-		i++;
+		currentComposer.complete(endpos);
 		repaint();
 	}
 
@@ -161,8 +157,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// point but not release it. So that point is the
 		// current endpoint
 		endpos = new Point(arg0.getX(), arg0.getY());
-		AbstractShape currentShape = shapeList.get(i);
-		currentComposer.expand(currentShape, endpos);
+		currentComposer.expand(endpos);
 		repaint();
 	}
 
@@ -236,8 +231,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 				// Clear the entire drawing screen
 				// First remove all elements
 				shapeList.clear();
-				// then make vector index zero
-				i = 0;
 				// finally, call repaint()
 				repaint();
 			}

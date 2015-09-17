@@ -2,15 +2,17 @@ import java.awt.Point;
 
 public class OvalComposer implements ShapeComposer {
 
+	private Oval shape;
+	
 	@Override
 	public AbstractShape create(Point startPos) {
-		Oval oval = new Oval(); // Create the shape - Oval
-		oval.setStart(startPos);// Set the start position where mouse went down
-		return oval;
+		shape = new Oval(); // Create the shape - Oval
+		shape.setStart(startPos);// Set the start position where mouse went down
+		return shape;
 	}
 
 	@Override
-	public void expand(AbstractShape shape, Point p) {
+	public void expand(Point p) {
 		int x = (int) p.getX();
 		int y = (int) p.getY();
 		Point startPos = shape.getStart();
@@ -19,26 +21,25 @@ public class OvalComposer implements ShapeComposer {
 		int newWidth = Math.abs((drawto.x - newstart.x));
 		int newHeight = Math.abs((drawto.y - newstart.y));
 		
-		Oval oval = (Oval) shape;
-		oval.setWidth(newWidth);
-		oval.setHeight(newHeight);
-		oval.setStart(newstart);
+		shape.setWidth(newWidth);
+		shape.setHeight(newHeight);
+		shape.setStart(newstart);
 	}
 
 	@Override
-	public void complete(AbstractShape shape, Point p) {
+	public void complete(Point p) {
 		int x = (int) p.getX();
 		int y = (int) p.getY();
-		Oval currentShape = (Oval) shape;
-		Point currentStart = currentShape.getStart();
+		
+		Point currentStart = shape.getStart();
 		Point drawto = new Point(Math.max(x, currentStart.x), Math.max(y, currentStart.y));
 		Point newStart = new Point(Math.min(x, currentStart.x), Math.min(y, currentStart.y));
 		int newWidth = Math.abs((drawto.x - newStart.x));
 		int newHeight = Math.abs((drawto.y - newStart.y));
 
-		currentShape.setWidth(newWidth);
-		currentShape.setHeight(newHeight);
-		currentShape.setStart(newStart);
+		shape.setWidth(newWidth);
+		shape.setHeight(newHeight);
+		shape.setStart(newStart);
 	}
 
 }
