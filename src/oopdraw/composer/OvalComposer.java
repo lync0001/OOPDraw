@@ -3,7 +3,6 @@ import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
 import oopdraw.shape.Oval;
-import oopdraw.shape.Oval;
 
 public class OvalComposer implements ShapeComposer {
 

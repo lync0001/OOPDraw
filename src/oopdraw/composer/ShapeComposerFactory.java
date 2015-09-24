@@ -1,8 +1,6 @@
 package oopdraw.composer;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ShapeComposerFactory {
 	private HashMap<String, ShapeComposer> composers;
