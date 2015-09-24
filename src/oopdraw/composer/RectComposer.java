@@ -3,14 +3,15 @@ import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
 import oopdraw.shape.Rectangle;
+import oopdraw.shape.adapter.RectangleAdapter;
 
 public class RectComposer implements ShapeComposer {
 
-	private Rectangle shape;
+	private RectangleAdapter shape;
 	
 	@Override
 	public AbstractShape create(Point startPos) {
-		shape = new Rectangle(); // Create the shape - Rectangle
+		shape = new RectangleAdapter(startPos); // Create the shape - Rectangle
 		shape.setStart(startPos);// Set the start position where mouse went down
 		return shape;
 	}
