@@ -1,22 +1,29 @@
 package oopdraw.shape;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Line2D;
 
-/**
- *  Class MyLine for drawing lines is
- *  derived from our 'base' class AbstractShape
- */
 public class Line extends AbstractShape {
+	private Line2D.Double line;
+	
+	public Line(Point startPoint) {
+		setStart(startPoint);
+		setEnd(new Point(0, 0));
+	}
 
 	@Override
 	public void setStart(Point pt) {
+		line = new Line2D.Double();
 		ptStart = pt;
 	}
 
+	@Override
 	public void setEnd(Point pt) {
+		line.setLine(getStart(), pt);
 		ptEnd = pt;
 	}
-
+	
 	public Point getStart() {
 		return ptStart;
 	}
@@ -25,11 +32,11 @@ public class Line extends AbstractShape {
 		return ptEnd;
 	}
 
-	// Drawing routine
+	@Override
 	public void Draw(Graphics2D g) {
-		g.setColor(clrFront); // Set default color -you may ignore colors
-		g.drawLine(ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+		g.setColor(super.clrFront);
+		g.draw(line);
 	}
+	
+	
 }
-
-// Class cLine ends

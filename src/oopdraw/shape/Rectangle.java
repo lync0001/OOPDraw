@@ -1,51 +1,47 @@
 package oopdraw.shape;
-import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.Point;
-
-// Class cRect for drawing Rects is derived
-// from our 'base class' cShape
+import java.awt.geom.Rectangle2D;
 
 public class Rectangle extends AbstractShape {
+	
+	private Rectangle2D.Double rectangle;
 
+	public Rectangle(Point startPoint) {
+		super();
+		rectangle = new Rectangle2D.Double();
+		ptStart = startPoint;
+		setEnd(new Point(0, 0));
+		setStart(startPoint);
+	}
+	
+	@Override
 	public void setStart(Point pt) {
+		rectangle.setRect(pt.getX(), pt.getY(), getEnd().getX(), getEnd().getY());
 		ptStart = pt;
 	}
 
+	@Override
 	public void setEnd(Point pt) {
+		rectangle.setFrameFromDiagonal(getStart(), pt);
 		ptEnd = pt;
 	}
 
 	public void setWidth(int w) {
+		rectangle.width = w;
 		nwidth = w;
 	}
 
 	public void setHeight(int h) {
+		rectangle.height = h;
 		nheight = h;
 	}
 
-	public Point getStart() {
-		return ptStart;
-	}
-
-	public Point getEnd() {
-		return new Point(0, 0);
-	}
-
-	public int getWidth() {
-		return nwidth;
-	}
-
-	public int getHeight() {
-		return nheight;
-	}
-
-	// Drawing routine
+	@Override
 	public void Draw(Graphics2D g) {
-		g.setColor(Color.blue.brighter()); // Set default color
-		g.drawRect(ptStart.x, ptStart.y, nwidth, nheight);
+		g.setColor(super.clrFront);
+		g.draw(rectangle);
 	}
-
+	
 }
-
-// Class cRect ends

@@ -1,22 +1,32 @@
 package oopdraw.shape;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Ellipse2D;
 
-/**
- *  Class MyOval for drawing ovals is derived
- *  from our 'base class' AbstratShape
- */
 public class Oval extends AbstractShape {
+	
+	private Ellipse2D.Double shape;
+	
+	public Oval(Point startPos) {
+		shape = new Ellipse2D.Double();
+		setStart(startPos);
+		setEnd(new Point(0, 0));
+	}
 
+	@Override
 	public void setStart(Point pt) {
+		shape.setFrameFromDiagonal(pt, getEnd());
 		ptStart = pt;
 	}
 
+	@Override
 	public void setEnd(Point pt) {
+		shape.setFrameFromDiagonal(getStart(), pt);
 		ptEnd = pt;
 	}
-
+	
 	public void setWidth(int w) {
 		nwidth = w;
 	}
@@ -24,7 +34,7 @@ public class Oval extends AbstractShape {
 	public void setHeight(int h) {
 		nheight = h;
 	}
-
+	
 	public Point getStart() {
 		return ptStart;
 	}
@@ -41,12 +51,9 @@ public class Oval extends AbstractShape {
 		return nheight;
 	}
 
-	// Drawing routine
+	@Override
 	public void Draw(Graphics2D g) {
-		g.setColor(Color.green.darker()); // Set default color
-		g.drawOval(ptStart.x, ptStart.y, nwidth, nheight);
+		g.setColor(Color.green.darker());
+		g.draw(shape);
 	}
-
 }
-
-// Class cOval ends

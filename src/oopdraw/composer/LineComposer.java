@@ -2,15 +2,15 @@ package oopdraw.composer;
 import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
-import oopdraw.shape.adapter.LineAdapter;
+import oopdraw.shape.Line;
 
 public class LineComposer implements ShapeComposer {
 
-	private LineAdapter shape;
+	private Line shape;
 	
 	@Override
 	public AbstractShape create(Point startPos) {
-		shape = new LineAdapter(startPos); // Create the shape - Line
+		shape = new Line(startPos); // Create the shape - Line
 		shape.setStart(startPos);// Set the start position where mouse went down
 		return shape;
 	}
