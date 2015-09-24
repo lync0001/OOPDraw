@@ -3,14 +3,15 @@ import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
 import oopdraw.shape.Line;
+import oopdraw.shape.adapter.LineAdapter;
 
 public class LineComposer implements ShapeComposer {
 
-	private Line shape;
+	private LineAdapter shape;
 	
 	@Override
 	public AbstractShape create(Point startPos) {
-		shape = new Line(); // Create the shape - Line
+		shape = new LineAdapter(startPos); // Create the shape - Line
 		shape.setStart(startPos);// Set the start position where mouse went down
 		return shape;
 	}
