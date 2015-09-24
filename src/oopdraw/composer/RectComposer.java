@@ -21,7 +21,6 @@ public class RectComposer implements ShapeComposer {
 		int x = (int) p.getX();
 		int y = (int) p.getY();
 		Point startPos = shape.getStart();
-		Point drawto = new Point(Math.max(x, startPos.x), Math.max(y, startPos.y));
 		Point newstart = new Point(Math.min(x, startPos.x), Math.min(y, startPos.y));
 
 		shape.setStart(newstart);
