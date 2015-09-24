@@ -98,7 +98,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		frame.setVisible(true);
 	}
 
-	private OOPDraw2() {
+	public OOPDraw2() {
 		currentComposer = new RectComposer();
 		shapeList = new ArrayList<AbstractShape>();
 		// Do nothing in constructor off applet
