@@ -42,8 +42,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import oopdraw.composer.LineComposer;
-import oopdraw.composer.OvalComposer;
-import oopdraw.composer.RectComposer;
 import oopdraw.composer.ShapeComposer;
 import oopdraw.composer.ShapeComposerFactory;
 import oopdraw.shape.AbstractShape;
@@ -92,7 +90,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 	private Point startpos, endpos; // Declare the start and end positions
 
-	private Button btnLine, btnOval, btnRect, btnClear;
+	private Button btnClear;
 
 	//ArrayList for storing the shapes
 	private ArrayList<AbstractShape> shapeList;
