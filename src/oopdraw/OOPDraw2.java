@@ -41,7 +41,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import oopdraw.composer.LineComposer;
+import oopdraw.composer.RectComposer;
 import oopdraw.composer.ShapeComposer;
 import oopdraw.composer.ShapeComposerFactory;
 import oopdraw.shape.AbstractShape;
@@ -99,7 +99,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	}
 
 	private OOPDraw2() {
-		currentComposer = new LineComposer();
+		currentComposer = new RectComposer();
 		shapeList = new ArrayList<AbstractShape>();
 		// Do nothing in constructor off applet
 		initGUI();		
