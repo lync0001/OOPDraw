@@ -2,7 +2,6 @@ package oopdraw.composer;
 import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
-import oopdraw.shape.Rectangle;
 import oopdraw.shape.adapter.RectangleAdapter;
 
 public class RectComposer implements ShapeComposer {

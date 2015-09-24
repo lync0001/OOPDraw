@@ -2,7 +2,6 @@ package oopdraw.composer;
 import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
-import oopdraw.shape.Line;
 import oopdraw.shape.adapter.LineAdapter;
 
 public class LineComposer implements ShapeComposer {
