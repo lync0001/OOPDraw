@@ -84,8 +84,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 
 	private static final long serialVersionUID = 4695753453561082104L;
 	
-	private static OOPDraw2 instance;
-	
 	private ShapeComposer currentComposer;
 
 	private Point startpos, endpos; // Declare the start and end positions
@@ -105,13 +103,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		shapeList = new ArrayList<AbstractShape>();
 		// Do nothing in constructor off applet
 		initGUI();		
-	}
-	
-	public static OOPDraw2 getInstance() {
-		if (OOPDraw2.instance == null) {
-			OOPDraw2.instance = new OOPDraw2();
-		}
-		return OOPDraw2.instance;
 	}
 
 	@Override
