@@ -3,14 +3,15 @@ import java.awt.Point;
 
 import oopdraw.shape.AbstractShape;
 import oopdraw.shape.Oval;
+import oopdraw.shape.adapter.OvalAdapter;
 
 public class OvalComposer implements ShapeComposer {
 
-	private Oval shape;
+	private OvalAdapter shape;
 	
 	@Override
 	public AbstractShape create(Point startPos) {
-		shape = new Oval(); // Create the shape - Oval
+		shape = new OvalAdapter(startPos); // Create the shape - Oval
 		shape.setStart(startPos);// Set the start position where mouse went down
 		return shape;
 	}
@@ -24,10 +25,11 @@ public class OvalComposer implements ShapeComposer {
 		Point newstart = new Point(Math.min(x, startPos.x), Math.min(y, startPos.y));
 		int newWidth = Math.abs((drawto.x - newstart.x));
 		int newHeight = Math.abs((drawto.y - newstart.y));
-		
+	
 		shape.setWidth(newWidth);
 		shape.setHeight(newHeight);
 		shape.setStart(newstart);
+		shape.setEnd(p);
 	}
 
 	@Override

@@ -45,6 +45,7 @@ import oopdraw.composer.LineComposer;
 import oopdraw.composer.OvalComposer;
 import oopdraw.composer.RectComposer;
 import oopdraw.composer.ShapeComposer;
+import oopdraw.composer.ShapeComposerFactory;
 import oopdraw.shape.AbstractShape;
 
 /**
@@ -209,32 +210,23 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		setLayout(new FlowLayout());
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		ShapeComposerFactory composerFactory = new ShapeComposerFactory();
 		// Create and Add the buttons
-		btnLine = new Button("Line");
-		btnLine.addActionListener(new ActionListener() {
+		for (String name : composerFactory.listComposerNames()) {
+			Button btn = new Button(name);
+			btn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new LineComposer();
-			}
-		});
-		btnOval = new Button("Oval");
-		btnOval.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new OvalComposer();
-			}
-		});
-		btnRect = new Button("Rectangle");
-		btnRect.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				currentComposer = new RectComposer();
-
-			}
-		});
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						currentComposer = composerFactory.createComposer(name);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			add(btn);
+		}
 		btnClear = new Button("Clear");
 		btnClear.addActionListener(new ActionListener() {
 
@@ -247,9 +239,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 				repaint();
 			}
 		});
-		add(btnLine);
-		add(btnOval);
-		add(btnRect);
 		add(btnClear);
 	}
 

@@ -5,7 +5,7 @@ import oopdraw.shape.AbstractShape;
 import oopdraw.shape.adapter.RectangleAdapter;
 
 public class RectComposer implements ShapeComposer {
-
+	
 	private RectangleAdapter shape;
 	
 	@Override
