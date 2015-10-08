@@ -28,16 +28,6 @@ public class Rectangle extends AbstractShape {
 		ptEnd = pt;
 	}
 
-	public void setWidth(int w) {
-		rectangle.width = w;
-		nwidth = w;
-	}
-
-	public void setHeight(int h) {
-		rectangle.height = h;
-		nheight = h;
-	}
-
 	@Override
 	public void Draw(Graphics2D g) {
 		g.setColor(super.clrFront);

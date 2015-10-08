@@ -16,10 +16,6 @@ public abstract class AbstractShape extends Object
 
 	protected Point ptEnd; // End point of shape
 
-	protected int nwidth; // Width of shape
-
-	protected int nheight; // Height of shape
-
 	protected Color clrFront; // Default color
 
 	public AbstractShape() {

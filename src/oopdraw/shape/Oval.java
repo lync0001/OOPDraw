@@ -27,14 +27,6 @@ public class Oval extends AbstractShape {
 		ptEnd = pt;
 	}
 	
-	public void setWidth(int w) {
-		nwidth = w;
-	}
-
-	public void setHeight(int h) {
-		nheight = h;
-	}
-	
 	public Point getStart() {
 		return ptStart;
 	}
@@ -42,15 +34,7 @@ public class Oval extends AbstractShape {
 	public Point getEnd() {
 		return new Point(0, 0);
 	}
-
-	public int getWidth() {
-		return nwidth;
-	}
-
-	public int getHeight() {
-		return nheight;
-	}
-
+	
 	@Override
 	public void Draw(Graphics2D g) {
 		g.setColor(Color.green.darker());
