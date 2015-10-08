@@ -12,14 +12,16 @@ public class ShapeComposerFactory {
 	}
 	
 	private void addNames() {
-		names = new String[3];
+		names = new String[4];
 		String trimString = "Composer";
 		String rectClassName = RectComposer.class.getSimpleName().replaceAll(trimString, "");
 		String ovalClassName = OvalComposer.class.getSimpleName().replaceAll(trimString, "");
 		String lineClassName = LineComposer.class.getSimpleName().replaceAll(trimString, "");
+		String weirdShapeClassName = WeirdShapeComposer.class.getSimpleName().replaceAll(trimString, "");
 		names[0] = rectClassName.toLowerCase();
 		names[1] = ovalClassName.toLowerCase();
 		names[2] = lineClassName.toLowerCase();
+		names[3] = weirdShapeClassName.toLowerCase();
 	}
 	
 	public String[] listComposerNames() {
@@ -41,6 +43,9 @@ public class ShapeComposerFactory {
 			break;
 		case "oval":
 			currentComposer = new OvalComposer();
+			break;
+		case "weirdshape":
+			currentComposer = new WeirdShapeComposer();
 			break;
 		default:
 			throw new Exception("Oeps");
