@@ -17,12 +17,7 @@ public class RectComposer implements ShapeComposer {
 
 	@Override
 	public void expand(Point p) {
-		int x = (int) p.getX();
-		int y = (int) p.getY();
-		Point startPos = shape.getStart();
-		Point newstart = new Point(Math.min(x, startPos.x), Math.min(y, startPos.y));
-
-		shape.setStart(newstart);
+		shape.setStart(shape.getStart());
 		shape.setEnd(p);
 	}
 
