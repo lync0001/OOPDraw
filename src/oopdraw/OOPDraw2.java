@@ -86,8 +86,6 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 	
 	private ShapeComposer currentComposer;
 
-	private Point startpos, endpos; // Declare the start and end positions
-
 	private Button btnClear;
 
 	//ArrayList for storing the shapes
@@ -126,7 +124,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// position of the shape to be drawn
 		int x = arg0.getX();
 		int y = arg0.getY();
-		startpos = new Point(x, y);
+		Point startpos = new Point(x, y);
 		shapeList.add(currentComposer.create(startpos));
 	}
 
@@ -137,7 +135,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// Then update the Vector count.
 		int x = arg0.getX();
 		int y = arg0.getY();
-		endpos = new Point(x, y);
+		Point endpos = new Point(x, y);
 		currentComposer.complete(endpos);
 		repaint();
 	}
@@ -155,7 +153,7 @@ public class OOPDraw2 extends JFrame implements MouseListener, MouseMotionListen
 		// which means that the user may stop his mouse over a
 		// point but not release it. So that point is the
 		// current endpoint
-		endpos = new Point(arg0.getX(), arg0.getY());
+		Point endpos = new Point(arg0.getX(), arg0.getY());
 		currentComposer.expand(endpos);
 		repaint();
 	}
